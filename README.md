@@ -1,6 +1,6 @@
 # multiprime
 
-FIXME: description
+Solution to coding challenge posed by [omitted in case they don't wany solutions easily found via google].
 
 ## Installation
 
@@ -24,13 +24,7 @@ FIXME: listing of options this app accepts.
 
 ...
 
-### Any Other Sections
-### That You Think
-### Might be Useful
-
 ## License
 
-Copyright © 2015 FIXME
+Copyright © 2015
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
