@@ -3,5 +3,5 @@
             [multiprime.core :refer :all]))
 
 (deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+  (testing "primes 10 should return first 10 primes."
+    (is (= (primes 10) [2,3,5,7,11,13,17,19,23,29]))))
