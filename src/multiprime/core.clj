@@ -12,9 +12,8 @@
   (let [divisible-by? (fn [d] (fn [n] (= 0 (mod n d))))
         remove-multiples-of (fn [x s] (remove (divisible-by? x) s))
         range-starting-from (fn [x] (drop x (range)))
-        next-item (fn [foo] (cons (first (rest foo))
-                                  (remove-multiples-of (first (rest foo))
-                                                       (rest (rest foo)))))]
+        next-item (fn [[_ & [y & ys]]]
+                    (cons y (remove-multiples-of y ys)))]
     (map first (iterate next-item (range-starting-from 1)))))
 
 (defn primes
