@@ -9,7 +9,7 @@
 (defn all-primes
   []
   (let [divisible-by? (fn [d] (fn [n] (= 0 (mod n d))))
-        remove-multiples-of (fn [x s] (remove (divisible-by? x) s))
+        remove-multiples-of (fn [d xs] (remove (divisible-by? d) xs))
         range-starting-from (fn [x] (drop x (range)))
         rel-prime (fn rel-prime [[x & xs]]
                     (cons x (lazy-seq (rel-prime (remove-multiples-of x xs)))))]
