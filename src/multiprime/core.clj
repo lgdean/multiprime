@@ -4,7 +4,9 @@
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
-  (println "Hello, World!"))
+  (doall
+   (println (apply str (interpose "\t" ["X" 2])))
+   (println (apply str (interpose "\t" [2 4])))))
 
 (defn all-primes
   []
