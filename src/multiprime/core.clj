@@ -5,8 +5,8 @@
   "I don't do a whole lot ... yet."
   [& args]
   (doall
-   (println (apply str (interpose "\t" ["X" 2])))
-   (println (apply str (interpose "\t" [2 4])))))
+   (map #(println (apply str (interpose "\t" %)))
+        [["X" 2] [2 4]])))
 
 (defn all-primes
   []
