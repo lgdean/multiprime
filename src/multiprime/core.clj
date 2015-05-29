@@ -29,4 +29,4 @@
   [& args]
   (doall
    (map #(println (apply str (interpose "\t" %)))
-        [["X" 2] [2 4]])))
+        (times-table (primes 1)))))
