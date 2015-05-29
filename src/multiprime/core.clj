@@ -21,3 +21,12 @@
   "Return the first n primes."
   [n]
   (take n (all-primes)))
+
+(defn times-table
+  "Return a multiplication table, with 'X' in the (0,0) position."
+  [multiplicands]
+  (cons (cons "X" multiplicands)
+        (map cons multiplicands
+             (map (fn [x] (map (fn [y] (* x y)) multiplicands))
+                  multiplicands)
+             )))
