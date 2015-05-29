@@ -25,8 +25,10 @@
              )))
 
 (defn -main
-  "I don't do a whole lot ... yet."
-  [& args]
-  (doall
-   (map #(println (apply str (interpose "\t" %)))
-        (times-table (primes 1)))))
+  "Prints a multiplication table of the first n (default 10) primes.
+  Blows up un-gracefully if called with a non-integer value of n."
+  ([] (-main "10"))
+  ([n & other-args]
+     (doall
+      (map #(println (apply str (interpose "\t" %)))
+           (times-table (primes (Integer/parseInt n)))))))
