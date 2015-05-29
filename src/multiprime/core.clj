@@ -1,13 +1,6 @@
 (ns multiprime.core
   (:gen-class))
 
-(defn -main
-  "I don't do a whole lot ... yet."
-  [& args]
-  (doall
-   (map #(println (apply str (interpose "\t" %)))
-        [["X" 2] [2 4]])))
-
 (defn all-primes
   []
   (let [divisible-by? (fn [d] (fn [n] (= 0 (mod n d))))
@@ -30,3 +23,10 @@
              (map (fn [x] (map (fn [y] (* x y)) multiplicands))
                   multiplicands)
              )))
+
+(defn -main
+  "I don't do a whole lot ... yet."
+  [& args]
+  (doall
+   (map #(println (apply str (interpose "\t" %)))
+        [["X" 2] [2 4]])))
