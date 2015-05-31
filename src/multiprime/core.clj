@@ -18,10 +18,10 @@
 (defn times-table
   "Return a multiplication table, with 'X' in the (0,0) position."
   [multiplicands]
-  (cons (cons "X" multiplicands)
-        (map (fn [x] (map (fn [y] (* x y)) (cons 1 multiplicands)))
-             multiplicands)
-        ))
+  (let [header-row (cons "X" multiplicands)
+        columns    (cons  1  multiplicands)]
+    (cons header-row
+          (map (fn [x] (map (fn [y] (* x y)) columns)) multiplicands))))
 
 (defn -main
   "Prints a multiplication table of the first n (default 10) primes.
