@@ -19,10 +19,9 @@
   "Return a multiplication table, with 'X' in the (0,0) position."
   [multiplicands]
   (cons (cons "X" multiplicands)
-        (map cons multiplicands
-             (map (fn [x] (map (fn [y] (* x y)) multiplicands))
-                  multiplicands)
-             )))
+        (map (fn [x] (map (fn [y] (* x y)) (cons 1 multiplicands)))
+             multiplicands)
+        ))
 
 (defn -main
   "Prints a multiplication table of the first n (default 10) primes.
