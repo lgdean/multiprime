@@ -9,10 +9,16 @@
                     (cons x (lazy-seq (rel-prime (remove-multiples-of x xs)))))]
     (rel-prime (range-starting-from 2))))
 
+(defn next-prime
+  [primes-so-far]
+  (first (filter (fn [n] (not-any? (fn [d] (= 0 (mod n d))) primes-so-far))
+                 (drop 1 (iterate inc (last primes-so-far))))))
+
 (defn primes
   "Return the first n primes."
   [n]
-  (take n (all-primes)))
+  (nth (iterate (fn [xs] (conj xs (next-prime xs))) [2]) (dec n)))
+;; (take n (all-primes)))
 
 (defn times-table
   "Return a multiplication table, with 'X' in the (0,0) position."
