@@ -19,8 +19,8 @@
 (defn primes
   "Return the first n primes."
   [n]
-  (nth (iterate (fn [xs] (conj xs (next-prime xs))) [2]) (dec n)))
-;; (take n (all-primes)))
+;  (nth (iterate (fn [xs] (conj xs (next-prime xs))) [2]) (dec n)))
+  (take n (all-primes)))
 
 (defn times-table
   "Return a multiplication table, with 'X' in the (0,0) position."
