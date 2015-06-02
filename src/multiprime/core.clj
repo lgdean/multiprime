@@ -7,6 +7,7 @@
 ;; This approach is more complicated but equivalent:
 ;; it makes one big predicate and tries it on each candidate int.
 (defn all-primes
+  "Return a sequence of all the primes, in order."
   []
   (let [is-factor-of (fn [n] (fn [d] (= 0 (mod n d))))
         sieve (fn sieve [primes-so-far ints]
@@ -23,7 +24,8 @@
   (take n (all-primes)))
 
 (defn times-table
-  "Return a multiplication table, with 'X' in the (0,0) position."
+  "Return a multiplication table (sequence of sequences),
+  with 'X' in the (0,0) position."
   [multiplicands]
   (let [header-row (cons "X" multiplicands)
         columns    (cons  1  multiplicands)]
