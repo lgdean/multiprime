@@ -3,8 +3,9 @@
 
 ;; This is just a prime number sieve.
 ;; An earlier version was simpler and perhaps easier to follow,
-;; but led to stack overflow somewhere before 1000 primes.
-;; This approach is more complicated but equivalent.
+;; but had stack overflow around 1000 primes, because (filter (filter (etc))).
+;; This approach is more complicated but equivalent:
+;; it makes one big predicate and tries it on each candidate int.
 (defn all-primes
   []
   (let [is-factor-of (fn [n] (fn [d] (= 0 (mod n d))))
@@ -16,18 +17,10 @@
                          (sieve (conj primes-so-far prime) next-ints)))))]
     (sieve [] (iterate inc 2))))
 
-(defn next-prime
-  [primes-so-far]
-  (let [is-factor-of (fn [n] (fn [d] (= 0 (mod n d))))
-        integers-following (fn [x] (iterate inc (inc x)))]
-    (first (filter #(not-any? (is-factor-of %) primes-so-far)
-                   (integers-following (or (last primes-so-far) 1))))))
-
 (defn primes
   "Return the first n primes."
   [n]
-  (nth (iterate (fn [xs] (conj xs (next-prime xs))) []) n))
-;  (take n (all-primes)))
+  (take n (all-primes)))
 
 (defn times-table
   "Return a multiplication table, with 'X' in the (0,0) position."
