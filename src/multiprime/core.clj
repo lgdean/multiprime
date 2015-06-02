@@ -1,6 +1,10 @@
 (ns multiprime.core
   (:gen-class))
 
+;; This is just a prime number sieve.
+;; An earlier version was simpler and perhaps easier to follow,
+;; but led to stack overflow somewhere before 1000 primes.
+;; This approach is more complicated but equivalent.
 (defn all-primes
   []
   (let [is-factor-of (fn [n] (fn [d] (= 0 (mod n d))))
@@ -8,8 +12,8 @@
                 (let [[prime & next-ints]
                       (drop-while #(some (is-factor-of %) primes-so-far) ints)]
                   (cons prime
-                        (lazy-seq (sieve (conj primes-so-far prime)
-                                         next-ints)))))]
+                        (lazy-seq
+                         (sieve (conj primes-so-far prime) next-ints)))))]
     (sieve [] (iterate inc 2))))
 
 (defn next-prime
