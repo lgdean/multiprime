@@ -22,5 +22,5 @@
 
 (deftest integration-test
   (testing "output should be a multiplication table."
-    (is (= "X\t2\t3\n2\t4\t6\n3\t6\t9\n"
-           (with-out-str (-main "2"))))))
+    (is (= ["X\t2\t3" "2\t4\t6" "3\t6\t9"]
+           (clojure.string/split-lines (with-out-str (-main "2")))))))
