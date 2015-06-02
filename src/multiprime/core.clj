@@ -11,8 +11,10 @@
 
 (defn next-prime
   [primes-so-far]
-  (first (filter (fn [n] (not-any? #(= 0 (mod n %)) primes-so-far))
-                 (iterate inc (inc (last primes-so-far))))))
+  (let [is-factor-of (fn [n] (fn [d] (= 0 (mod n d))))
+        integers-following (fn [x] (iterate inc (inc x)))]
+    (first (filter #(not-any? (is-factor-of %) primes-so-far)
+                   (integers-following (last primes-so-far))))))
 
 (defn primes
   "Return the first n primes."
