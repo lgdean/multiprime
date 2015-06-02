@@ -4,10 +4,9 @@
 (defn all-primes
   []
   (let [remove-multiples-of (fn [d xs] (remove #(= 0 (mod % d)) xs))
-        range-starting-from (fn [x] (drop x (range)))
         rel-prime (fn rel-prime [[x & xs]]
                     (cons x (lazy-seq (rel-prime (remove-multiples-of x xs)))))]
-    (rel-prime (range-starting-from 2))))
+    (rel-prime (iterate inc 2))))
 
 (defn next-prime
   [primes-so-far]
