@@ -11,8 +11,8 @@
 
 (defn next-prime
   [primes-so-far]
-  (first (filter (fn [n] (not-any? (fn [d] (= 0 (mod n d))) primes-so-far))
-                 (drop 1 (iterate inc (last primes-so-far))))))
+  (first (filter (fn [n] (not-any? #(= 0 (mod n %)) primes-so-far))
+                 (iterate inc (inc (last primes-so-far))))))
 
 (defn primes
   "Return the first n primes."
