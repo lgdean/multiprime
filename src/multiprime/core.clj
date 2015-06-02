@@ -3,10 +3,14 @@
 
 (defn all-primes
   []
-  (let [remove-multiples-of (fn [d xs] (remove #(= 0 (mod % d)) xs))
-        rel-prime (fn rel-prime [[x & xs]]
-                    (cons x (lazy-seq (rel-prime (remove-multiples-of x xs)))))]
-    (rel-prime (iterate inc 2))))
+  (let [is-factor-of (fn [n] (fn [d] (= 0 (mod n d))))
+        sieve (fn sieve [primes-so-far ints]
+                (let [[prime & next-ints]
+                      (drop-while #(some (is-factor-of %) primes-so-far) ints)]
+                  (cons prime
+                        (lazy-seq (sieve (conj primes-so-far prime)
+                                         next-ints)))))]
+    (sieve [] (iterate inc 2))))
 
 (defn next-prime
   [primes-so-far]
