@@ -23,6 +23,10 @@
   [n]
   (take n (all-primes)))
 
+;; It is arguably naughty to have this function involve "X" at all.
+;; I suppose it depends on whether you consider "X" part of the table
+;; or part of the formatting.  To me, the word "table" already implies
+;; thinking about a format (a table!), but I can see the other side, too.
 (defn times-table
   "Return a multiplication table (sequence of sequences),
   with 'X' in the (0,0) position."
@@ -40,3 +44,11 @@
      (doall
       (map #(println (apply str (interpose "\t" %)))
            (times-table (primes (Integer/parseInt n)))))))
+
+;; Please note: I would not write so many conversational comments in
+;; real-world code.  But in this case, I figure you want to know how I think.
+;; Hope it helped! :)
+
+;; Please also note: I'm rather new to Clojure (but I like it so far!),
+;; so if I've done something terribly un-idiomatic, that could be why.
+;; I'm definitely curious to learn about better ways.
